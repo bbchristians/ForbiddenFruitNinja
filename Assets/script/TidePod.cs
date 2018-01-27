@@ -12,8 +12,11 @@ public class TidePod : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
+		gameObject.transform.Rotate (Vector3.right * 180);
+
 		rb = GetComponent<Rigidbody2D> ();
-		rb.AddForce (transform.up * startForce, ForceMode2D.Impulse);
+		rb.AddForce (transform.up * startForce * -1, ForceMode2D.Impulse);
 		Destroy (gameObject, 5f);
 	}
 	
@@ -25,7 +28,7 @@ public class TidePod : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D col) {
 		if (col.tag == "Blade") {
 			GameObject go = Instantiate (juiceProducer, transform);
-			go.transform.SetParent (null);
+			Debug.Log (go);
 			Destroy (gameObject);
 		}
 	}

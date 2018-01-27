@@ -31,7 +31,7 @@ public class PodSpawner : MonoBehaviour {
 			int spawnIndex = Random.Range (0, points.Length);
 			Transform spawnPoint = points [spawnIndex];
 
-			Instantiate (pod, spawnPoint.position, spawnPoint.rotation);
+			GameObject go = Instantiate (pod, spawnPoint.position, spawnPoint.rotation);
 		}
 	}
 }
