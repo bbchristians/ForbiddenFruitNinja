@@ -14,6 +14,8 @@ public class Blade : MonoBehaviour {
 
 	public float minSlashSpeed;
 
+	public Vector2 movementVector;
+
 	private Vector2 lastPos;
 	Rigidbody2D bladeRB;
 	CircleCollider2D bladeCollider;
@@ -28,7 +30,8 @@ public class Blade : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		Vector2 curLoc = Input.mousePosition;
-		velocity = (curLoc - lastPos).magnitude / Time.deltaTime;
+		movementVector = curLoc - lastPos;
+		velocity = (movementVector).magnitude / Time.deltaTime;
 		lastPos = curLoc;
 
 		if (bladeRB == null) {

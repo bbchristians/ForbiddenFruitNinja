@@ -9,6 +9,8 @@ public class Juice : MonoBehaviour {
 
 	public float maxRange = 1;
 
+	private Vector2 vel;
+
 	public Material[] materials;
 
 	// Use this for initialization
@@ -26,8 +28,12 @@ public class Juice : MonoBehaviour {
 			go.transform.localScale = new Vector3 (curScale.x * rand, curScale.y * rand, curScale.z * rand);
 
 			Rigidbody rb = go.GetComponent<Rigidbody> ();
-			rb.AddForce (transform.up * 3);
+			rb.AddForce (vel * 100);
 		}
 		Destroy (gameObject, 5f);
+	}
+
+	public void addVelocityVector(Vector2 vel) {
+		this.vel = vel;
 	}
 }
