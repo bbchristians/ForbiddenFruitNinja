@@ -14,6 +14,8 @@ public class PodSpawner : MonoBehaviour {
 	public float minDelay = 1f;
 	public float maxDelay = 1f;
 
+	public float maxSpin = 10; // deg/sec
+
 	public GameObject playerController;
 	private PlayerController pcScript;
 
@@ -38,7 +40,9 @@ public class PodSpawner : MonoBehaviour {
 			Transform spawnPoint = points [spawnIndex];
 			if (Random.value > chanceSpawnFDA) {
 				GameObject go = Instantiate (pod, spawnPoint.position, spawnPoint.rotation);
-				go.GetComponent<TidePod> ().setPCScript (pcScript);
+				TidePod script = go.GetComponent<TidePod> ();
+				script.setPCScript (pcScript);
+				script.setSpinRate (Random.value * maxSpin);
 			} else {
 				GameObject go = Instantiate (FDA, spawnPoint.position, spawnPoint.rotation);
 				go.GetComponent<FDA> ().setPCScript (pcScript);

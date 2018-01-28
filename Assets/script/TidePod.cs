@@ -14,6 +14,8 @@ public class TidePod : MonoBehaviour {
 
 	public int POINT_VALUE;
 
+	private float spinRate;
+
 	private PlayerController pcScript;
 
 	// Use this for initialization
@@ -32,7 +34,7 @@ public class TidePod : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		transform.Rotate (0, 0, spinRate * Time.deltaTime);
 	}
 
 	public void setPCScript(PlayerController script) {
@@ -54,6 +56,10 @@ public class TidePod : MonoBehaviour {
 			GetComponent<CircleCollider2D> ().enabled = false;
 			pcScript.loseLife ();
 		}
+	}
+
+	public void setSpinRate(float rate) {
+		spinRate = rate;
 	}
 
 

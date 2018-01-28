@@ -782,6 +782,7 @@ MonoBehaviour:
   - {fileID: 1898319260}
   minDelay: 1
   maxDelay: 1
+  maxSpin: 100
   playerController: {fileID: 1667374448}
 --- !u!4 &1027697313
 Transform:

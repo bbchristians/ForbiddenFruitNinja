@@ -53,5 +53,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   juiciness: 10
   juice: {fileID: 1782592402117188, guid: 8ddb2975868e25c468857b7952706cb8, type: 2}
-  maxRange: 1
+  maxRange: 0
   materials: []

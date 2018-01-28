@@ -21,6 +21,9 @@ public class Juice : MonoBehaviour {
 
 			Material material = materials [Random.Range (0, 2)];
 			go.GetComponent<Renderer> ().material = material;
+			float rand = Random.value * 2;
+			Vector3 curScale = go.transform.localScale;
+			go.transform.localScale = new Vector3 (curScale.x * rand, curScale.y * rand, curScale.z * rand);
 
 			Rigidbody rb = go.GetComponent<Rigidbody> ();
 			rb.AddForce (transform.up * 3);
