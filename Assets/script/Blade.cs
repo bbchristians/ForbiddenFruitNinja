@@ -30,7 +30,7 @@ public class Blade : MonoBehaviour {
 
 		if (isCutting) {
 			UpdateCutGO ();
-		}
+		}	
 	}
 
 	void StartCutting() {

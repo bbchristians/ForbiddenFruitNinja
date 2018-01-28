@@ -12,6 +12,10 @@ public class TidePod : MonoBehaviour {
 
 	public Material[] materials;
 
+	public int POINT_VALUE;
+
+	private PlayerController pcScript;
+
 	// Use this for initialization
 	void Start () {
 
@@ -21,9 +25,7 @@ public class TidePod : MonoBehaviour {
 		rb.AddForce (transform.up * startForce * -1, ForceMode2D.Impulse);
 		materials = new Material [2];
 		materials [0] = transform.GetChild (0).GetChild (2).gameObject.GetComponent<Renderer>().material;
-		materials [1] = transform.GetChild (0).GetChild (3).gameObject.GetComponent<Renderer>().material;
-
-		Debug.Log (transform.GetChild (0).GetChild (2).gameObject);			
+		materials [1] = transform.GetChild (0).GetChild (3).gameObject.GetComponent<Renderer>().material;		
 
 		Destroy (gameObject, 5f);
 	}
@@ -33,9 +35,14 @@ public class TidePod : MonoBehaviour {
 		
 	}
 
+	public void setPCScript(PlayerController script) {
+		pcScript = script;
+	}
+
 	void OnTriggerEnter2D(Collider2D col) {
 		if (col.tag == "Blade") {
 			GetComponent<CircleCollider2D> ().enabled = false;
+			pcScript.addScore (POINT_VALUE);
 
 			foreach (Transform child in transform) {
 				Destroy (child.gameObject);

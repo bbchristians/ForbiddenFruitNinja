@@ -12,9 +12,13 @@ public class PodSpawner : MonoBehaviour {
 	public float minDelay = 1f;
 	public float maxDelay = 1f;
 
+	public GameObject playerController;
+	private PlayerController pcScript;
+
 	// Use this for initialization
 	void Start () {
 		StartCoroutine (SpawnPods ());
+		pcScript = playerController.GetComponent<PlayerController> ();
 	}
 	
 	// Update is called once per frame
@@ -32,6 +36,8 @@ public class PodSpawner : MonoBehaviour {
 			Transform spawnPoint = points [spawnIndex];
 
 			GameObject go = Instantiate (pod, spawnPoint.position, spawnPoint.rotation);
+			go.GetComponent<TidePod> ().setPCScript (pcScript);
+			Debug.Log (go.GetComponent<TidePod> ());
 		}
 	}
 }
