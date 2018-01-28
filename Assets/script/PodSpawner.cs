@@ -5,9 +5,11 @@ using UnityEngine;
 public class PodSpawner : MonoBehaviour {
 
 	public GameObject pod;
+	public GameObject FDA;
+
+	public float chanceSpawnFDA = .1f;
+
 	public Transform[] points;
-
-
 
 	public float minDelay = 1f;
 	public float maxDelay = 1f;
@@ -34,10 +36,13 @@ public class PodSpawner : MonoBehaviour {
 
 			int spawnIndex = Random.Range (0, points.Length);
 			Transform spawnPoint = points [spawnIndex];
-
-			GameObject go = Instantiate (pod, spawnPoint.position, spawnPoint.rotation);
-			go.GetComponent<TidePod> ().setPCScript (pcScript);
-			Debug.Log (go.GetComponent<TidePod> ());
+			if (Random.value > chanceSpawnFDA) {
+				GameObject go = Instantiate (pod, spawnPoint.position, spawnPoint.rotation);
+				go.GetComponent<TidePod> ().setPCScript (pcScript);
+			} else {
+				GameObject go = Instantiate (FDA, spawnPoint.position, spawnPoint.rotation);
+				go.GetComponent<FDA> ().setPCScript (pcScript);
+			}
 		}
 	}
 }

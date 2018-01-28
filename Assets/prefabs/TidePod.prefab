@@ -409,3 +409,4 @@ MonoBehaviour:
     type: 2}
   startForce: 14
   materials: []
+  POINT_VALUE: 1
