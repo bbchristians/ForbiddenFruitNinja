@@ -10,6 +10,11 @@ public class Blade : MonoBehaviour {
 	GameObject currentBladeTrail;
 
 	public GameObject bladeTrail;
+	public float velocity;
+
+	public float minSlashSpeed;
+
+	private Vector2 lastPos;
 	Rigidbody2D bladeRB;
 	CircleCollider2D bladeCollider;
 
@@ -22,6 +27,10 @@ public class Blade : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		Vector2 curLoc = Input.mousePosition;
+		velocity = (curLoc - lastPos).magnitude / Time.deltaTime;
+		lastPos = curLoc;
+
 		if (bladeRB == null) {
 			return;
 		}
@@ -33,13 +42,19 @@ public class Blade : MonoBehaviour {
 
 		if (isCutting) {
 			UpdateCutGO ();
+			if (velocity < minSlashSpeed) {
+				bladeCollider.enabled = false;
+			} else {
+				bladeCollider.enabled = true;
+			}
 		}	
 	}
 
 	void StartCutting() {
 		isCutting = true;
 		currentBladeTrail = Instantiate (bladeTrail, transform);
-		bladeCollider.enabled = true;
+		currentBladeTrail.GetComponent<TrailRenderer> ().enabled = false;
+		//bladeCollider.enabled = true;
 	}
 
 	void StopCutting() {
@@ -52,5 +67,6 @@ public class Blade : MonoBehaviour {
 
 	void UpdateCutGO() {
 		bladeRB.position = cam.ScreenToWorldPoint(Input.mousePosition);
+		currentBladeTrail.GetComponent<TrailRenderer> ().enabled = true;
 	}
 }

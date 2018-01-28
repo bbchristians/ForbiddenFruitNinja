@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour {
 
@@ -20,14 +21,14 @@ public class PlayerController : MonoBehaviour {
 	public GameObject gameOverFade;
 	public float gameOverAlpha = .1f;
 	public float fadeDurationSec = 4f;
-
+	public GameObject retryButton;
 
 	private int lives = 3;
 	private int points = 0;
 
 	// Use this for initialization
 	void Start () {
-		
+		retryButton.SetActive (false);
 	}
 
 	// Update is called once per frame
@@ -38,6 +39,7 @@ public class PlayerController : MonoBehaviour {
 			hasLost = true;
 			Destroy (blade);
 			StartCoroutine (fadeAlpha (gameOverAlpha, fadeDurationSec));
+			retryButton.SetActive (true);
 		}
 	}
 
@@ -59,5 +61,9 @@ public class PlayerController : MonoBehaviour {
 			gameOverFade.GetComponent<Image> ().color = newColor;
 			yield return null;
 		}
+	}
+
+	public void restartGame(){
+		SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex);
 	}
 }
