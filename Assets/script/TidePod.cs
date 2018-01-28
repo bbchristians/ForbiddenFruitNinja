@@ -49,8 +49,10 @@ public class TidePod : MonoBehaviour {
 			}
 				
 			GameObject go = Instantiate (juiceProducer, transform);
-			Debug.Log (go);
 			go.GetComponent<Juice> ().materials = materials;
+		} else if (col.tag == "KillBox") {
+			GetComponent<CircleCollider2D> ().enabled = false;
+			pcScript.loseLife ();
 		}
 	}
 

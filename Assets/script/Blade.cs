@@ -22,6 +22,9 @@ public class Blade : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (bladeRB == null) {
+			return;
+		}
 		if (Input.GetMouseButtonDown (0)) {
 			StartCutting ();
 		} else if (Input.GetMouseButtonUp (0)) {

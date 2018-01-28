@@ -407,6 +407,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   juiceProducer: {fileID: 1345667410597996, guid: a1bd332b37e1a46468c1788a2804c9a5,
     type: 2}
-  startForce: 14
+  startForce: 13
   materials: []
   POINT_VALUE: 1
